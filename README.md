@@ -59,3 +59,24 @@ npm i react-router-dom@6
 - 在 layout 放置 Outlet 元件
 
 <br>
+
+## 將導覽列的 a 標籤換成 NavLink
+
+<aside>
+💡
+
+NavLink 和 Link 的差異在於是否有 active 樣式，前者有後者沒有
+
+因此若單純是用來跳轉的話，使用 Link 即可
+
+</aside>
+
+```jsx
+const routes = [
+  { path: "/", name: "首頁" },
+  { path: "/products", name: "產品列表" },
+  { path: "/cart", name: "購物車" },
+];
+```
+
+<br>

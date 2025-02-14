@@ -26,3 +26,36 @@ npm i react-router-dom@6
 2. 在 main.jsx 下 return RouterProvider，記得將 router 作為 props 傳入
 
 <br>
+
+#### 前台頁面
+
+- 首頁
+- 產品頁
+- 產品詳細頁
+- 購物車
+- 建立訂單成功 - 前往付款（自行練習）
+- 付款成功（自行練習）
+
+<br>
+
+## 加入導覽列（Layout）
+
+模板
+
+```html
+<nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+  <div className="container">
+    <ul className="navbar-nav flex-row gap-5 fs-5">
+      <li className="nav-item">
+        <a className="nav-link" aria-current="page" href="#">首頁</a>
+      </li>
+      <li className="nav-item"><a className="nav-link" href="#">產品頁</a></li>
+      <li className="nav-item"><a className="nav-link" href="#">購物車</a></li>
+    </ul>
+  </div>
+</nav>
+```
+
+- 在 layout 放置 Outlet 元件
+
+<br>

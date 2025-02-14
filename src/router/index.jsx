@@ -1,9 +1,17 @@
 import { createHashRouter } from "react-router-dom";
+import FrontLayout from "../layouts/FrontLayout";
+import HomePage from "../pages/HomePage";
 
 const router = createHashRouter([
   {
     path: "/",
-    element: <h1>首頁</h1>,
+    element: <FrontLayout />,
+    children: [
+      {
+        path: "",
+        element: <HomePage />,
+      },
+    ],
   },
 ]);
 

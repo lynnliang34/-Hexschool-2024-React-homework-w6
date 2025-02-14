@@ -19,3 +19,10 @@ npm i react-router-dom@6
 ```
 
 <br>
+
+## 路由設定
+
+1. 建立 router 與撰寫路由表（先寫首頁即可），副檔名要是 .jsx
+2. 在 main.jsx 下 return RouterProvider，記得將 router 作為 props 傳入
+
+<br>

@@ -80,3 +80,72 @@ const routes = [
 ```
 
 <br>
+
+## 拆分元件並撰寫路由表
+
+- 產品頁
+- 產品詳細頁
+- 購物車
+
+<br>
+
+## 將 App.jsx 分別拆到對應的頁面元件內
+
+- 產品列表頁
+- 購物車
+
+<br>
+
+## 在產品頁面中新增切換路由的 Link 標籤
+
+- 產品頁的查看更多
+
+點擊後會跳轉到產品詳細頁
+
+- 加入產品詳細頁的路由
+
+<br>
+
+## 產品詳細頁
+
+[取得單一產品 API](<https://hexschool.github.io/ec-courses-api-swaggerDoc/#/%E5%AE%A2%E6%88%B6%E8%B3%BC%E7%89%A9%20-%20%E7%94%A2%E5%93%81%20(Products)/get_v2_api__api_path__product__id_>)
+
+可以透過 useParams 拿到路由的 id
+
+模板
+
+```jsx
+<div className="container mt-5">
+  <div className="row">
+    <div className="col-6">
+      <img className="img-fluid" src={product.imageUrl} alt={product.title} />
+    </div>
+    <div className="col-6">
+      <div className="d-flex align-items-center gap-2">
+        <h2>{product.title}</h2>
+        <span className="badge text-bg-success">{product.category}</span>
+      </div>
+      <p className="mb-3">{product.description}</p>
+      <p className="mb-3">{product.content}</p>
+      <h5 className="mb-3">NT$ {product.price}</h5>
+      <div className="input-group align-items-center w-75">
+        <select
+          value={qtySelect}
+          onChange={(e) => setQtySelect(e.target.value)}
+          id="qtySelect"
+          className="form-select"
+        >
+          {Array.from({ length: 10 }).map((_, index) => (
+            <option key={index} value={index + 1}>
+              {index + 1}
+            </option>
+          ))}
+        </select>
+        <button type="button" className="btn btn-primary">
+          加入購物車
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+```

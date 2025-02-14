@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ReactLoading from "react-loading";
 import AddToCartBtn from "../components/AddToCartBtn";
+import { Link } from "react-router-dom";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const API_PATH = import.meta.env.VITE_API_PATH;
@@ -66,9 +67,12 @@ export default function ProductsPage() {
                 </td>
                 <td>
                   <div className="btn-group btn-group-sm">
-                    <button type="button" className="btn btn-outline-secondary">
+                    <Link
+                      to={`/products/${product.id}`}
+                      className="btn btn-outline-secondary"
+                    >
                       查看更多
-                    </button>
+                    </Link>
 
                     <AddToCartBtn
                       product_id={product.id}

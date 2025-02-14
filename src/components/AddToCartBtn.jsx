@@ -10,7 +10,7 @@ function AddToCartBtn({
   btn_style,
   isLoading,
   setIsLoading,
-  getCart,
+
   children,
 }) {
   // 加入購物車
@@ -23,7 +23,6 @@ function AddToCartBtn({
           qty: Number(qty),
         },
       });
-      getCart();
     } catch (error) {
       alert(`加入購物車失敗
        ${error}`);

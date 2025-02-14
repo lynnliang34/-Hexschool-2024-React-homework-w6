@@ -3,13 +3,12 @@ import axios from "axios";
 import { Modal } from "bootstrap";
 import { useForm } from "react-hook-form";
 import ReactLoading from "react-loading";
-import AddToCartBtn from "./components/addToCartBtn";
+import AddToCartBtn from "./components/AddToCartBtn";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const API_PATH = import.meta.env.VITE_API_PATH;
 
 function App() {
-  const [products, setProducts] = useState([]);
   const [tempProduct, setTempProduct] = useState([]);
 
   // 購物車列表狀態
@@ -150,63 +149,6 @@ function App() {
   return (
     <div className="container">
       <div className="mt-4">
-        <table className="table align-middle">
-          <thead>
-            <tr>
-              <th>圖片</th>
-              <th>商品名稱</th>
-              <th>價格</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product.id}>
-                <td style={{ width: "200px" }}>
-                  <img
-                    className="img-fluid"
-                    style={{
-                      width: "100%",
-                      height: "150px",
-                      objectFit: "cover",
-                      objectPosition: "center",
-                    }}
-                    src={product.imageUrl}
-                    alt={product.title}
-                  />
-                </td>
-                <td>{product.title}</td>
-                <td>
-                  <del className="h6">原價 {product.origin_price} 元</del>
-                  <div className="h5">特價 {product.price}元</div>
-                </td>
-                <td>
-                  <div className="btn-group btn-group-sm">
-                    <button
-                      onClick={() => handleSeeMore(product)}
-                      type="button"
-                      className="btn btn-outline-secondary"
-                    >
-                      查看更多
-                    </button>
-
-                    <AddToCartBtn
-                      product_id={product.id}
-                      qty={1}
-                      btn_style={"btn-outline-danger"}
-                      isLoading={isLoading}
-                      setIsLoading={setIsLoading}
-                      getCart={getCart}
-                    >
-                      加到購物車
-                    </AddToCartBtn>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
         <div
           ref={productModalRef}
           style={{ backgroundColor: "rgba(0,0,0,0.5)" }}

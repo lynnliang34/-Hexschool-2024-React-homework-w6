@@ -5,6 +5,9 @@ import ProductsPage from "../pages/ProductsPage";
 import ProductDetailsPage from "../pages/ProductDetailsPage";
 import CartPage from "../pages/CartPage";
 import NotFound from "../pages/NotFound";
+import LoginPage from "../pages/LoginPage";
+import AdminPage from "../pages/AdminPage";
+import AdminProductsPage from "../pages/AdminProductsPage";
 
 const router = createHashRouter([
   {
@@ -26,6 +29,20 @@ const router = createHashRouter([
       {
         path: "cart",
         element: <CartPage />,
+      },
+    ],
+  },
+  {
+    path: "/admin",
+    element: <AdminPage />,
+    children: [
+      {
+        path: "login",
+        element: <LoginPage />,
+      },
+      {
+        path: "products",
+        element: <AdminProductsPage />,
       },
     ],
   },

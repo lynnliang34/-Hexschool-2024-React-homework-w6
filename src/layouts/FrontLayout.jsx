@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, Link } from "react-router-dom";
 
 const routes = [
   { path: "/", name: "首頁" },
@@ -27,6 +27,17 @@ export default function FrontLayout() {
               </li>
             ))}
           </ul>
+
+          <div className="d-flex">
+            <Link
+              className="btn btn-outline-light"
+              type="button"
+              aria-current="page"
+              to="/admin"
+            >
+              登入
+            </Link>
+          </div>
         </div>
       </nav>
 

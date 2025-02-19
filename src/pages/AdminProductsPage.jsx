@@ -4,6 +4,7 @@ import Pagination from "../components/Pagination";
 import ProductModal from "../components/ProductModal";
 import DelProductModal from "../components/DelProductModal";
 import ReactLoading from "react-loading";
+import { Link } from "react-router-dom";
 
 // 環境變數
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -121,9 +122,33 @@ export default function AdminProductsPage({ setIsLogin }) {
     getProducts(page);
   };
 
+  // 登出功能
+  const handleLogout = async () => {
+    try {
+      const res = await axios.post(`${BASE_URL}/logout`);
+      setIsLogin(false);
+      alert(res.data.message);
+    } catch (error) {
+      alert("登出失敗");
+    }
+  };
+
   return (
     <>
       <div className="container mt-5">
+        <div className="row mb-4">
+          <div className="justify-content-end">
+            <Link
+              onClick={handleLogout}
+              to={`/`}
+              type="button"
+              className="btn btn-secondary"
+            >
+              登出
+            </Link>
+          </div>
+        </div>
+
         <div className="row">
           <div className="col">
             <div className="d-flex justify-content-between">

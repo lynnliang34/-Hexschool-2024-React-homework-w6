@@ -170,3 +170,106 @@ path 設成 \*
 Note：重新刷新頁面指的是向後端請求 HTML 重新渲染整個頁
 
 </aside>
+
+<br><br>
+
+# 助教問答
+
+Q：
+
+助教您好~
+這是我第六周作業的 [Github Repo](https://github.com/lynnliang34/-Hexschool-2024-React-homework-w6)、[Github Pages](https://lynnliang34.github.io/-Hexschool-2024-React-homework-w6/)
+
+env 參數：
+
+```jsx
+VITE_BASE_URL = https://ec-course-api.hexschool.io/v2
+VITE_API_PATH = lynnliang34
+```
+
+想請問：
+
+1. 跟著助教影音做完後，嘗試做 Lv3 點登入跳到第四周作頁的編輯頁面。但複製完後發現，點擊分頁按鈕變直接跳回首頁，不知是什麼問題？
+
+2. 有時寫作業在運行`npm run dev` 時，會跳出下方的錯誤訊息，差別只有最後的 8 位亂碼不同，我是直接手動找資料夾刪除，便能正常運行，可不知為何會出現此錯誤？
+
+```jsx
+[Error: EPERM: operation not permitted, rmdir 'C:\Users\lynnl\OneDrive\桌面\Project\2024 React 直播班\第六週作業\node_modules\.vite\deps_temp_8ab5061d'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'rmdir',
+  path: 'C:\\Users\\lynnl\\OneDrive\\桌面\\Project\\2024 React 直播班\\第六週作業\\node_modules\\.vite\\deps_temp_8ab5061d'
+}
+```
+
+3. 首頁`HomePage.jsx`有插入自己的圖片，試了兩種寫法，都是本地端可以看到，但 Github Page 顯示不出來，不知要怎麼改？
+
+```jsx
+<img src="/src/assets/infant.png"/>
+<img src="../src/assets/infant.png"/>
+```
+
+—
+
+A1：
+
+因為目前是使用 a 標籤，會有 `href=”#”` 的預設，所以點擊時會回到首頁。
+
+可在 a 標籤加上 `event.preventDefault()` 來取消預設行為：
+
+```jsx
+<a
+  onClick={(event) => {
+    event.preventDefault();
+    handlePageChange(page + 1);
+  }}
+  className="page-link"
+  href="#"
+>
+  {index + 1}
+</a>
+```
+
+A2：
+可以嘗試看看從專案路徑來做調整：
+
+- 將專案移出 OneDrive 資料夾之外，因為 OneDrive 有時會執行一些檔案同步操作，所以可能會影響到程式執行。
+- 將專案移出中文路徑之外，或調整中文路徑為英文路徑，在有些環境的操作，這些中文路徑可能會有所影響。另外在路徑也盡量避免空白，像是`2024 React 直播班` ，這有時候也會造成錯誤哩
+
+（以上這兩個方式可先嘗試調整看看～）
+
+A3：
+
+目前的撰寫方式，在執行 `npm run build` 時，Vite 會不曉得要將這兩張圖片納入到編譯檔案內；所以這邊需使用先 import 的方式，這樣在執行 `npm run build` 時就會被納入摟～（可再看看[官方文件](https://vite.dev/guide/assets.html)）
+
+```jsx
+import babyWordImg from "../assets/baby_word.png";
+import infantImg from "../assets/infant.png";
+
+export default function HomePage() {
+  return (
+    <div className="container text-center">
+      <img
+        className="mt-5"
+        src={babyWordImg}
+        style={{ width: "400px" }}
+        alt="寶寶用品店文字"
+      />
+      <h1 className="mt-1">寶寶用品店</h1>
+      <img src={infantImg} style={{ width: "400px" }} alt="嬰兒圖示" />
+    </div>
+  );
+}
+```
+
+另外提醒，因為同學部署的位置是：https://lynnliang34.github.io/-Hexschool-2024-React-homework-w6/，所以也記得 vite.config.js 的 base 路徑要做調整唷
+
+```jsx
+export default defineConfig({
+  base:
+    process.env.NODE_ENV === "production"
+      ? "/-Hexschool-2024-React-homework-w6/"
+      : "/",
+  plugins: [react()],
+});
+```

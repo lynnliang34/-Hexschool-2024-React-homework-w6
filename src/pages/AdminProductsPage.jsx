@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import Pagination from "../components/Pagination";
 import ProductModal from "../components/ProductModal";
 import DelProductModal from "../components/DelProductModal";
+import ReactLoading from "react-loading";
 
 // 環境變數
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -26,6 +27,9 @@ export default function AdminProductsPage({ setIsLogin }) {
   // 存放產品列表的狀態
   const [productList, setProductList] = useState([]);
 
+  // 螢幕 loading
+  const [isScreenLoading, setIsScreenLoading] = useState(false);
+
   // 獲取產品列表
   // 向後端 API 取得產品列表，並更新 productList
   const getProducts = async (page = 1) => {
@@ -44,9 +48,11 @@ export default function AdminProductsPage({ setIsLogin }) {
   // 驗證使用者是否已登入，如果登入成功，則載入產品列表。
   const checkIsLogin = async () => {
     try {
+      setIsScreenLoading(true);
       await axios.post(`${BASE_URL}/api/user/check`);
       await getProducts();
       setIsLogin(true);
+      setIsScreenLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -182,6 +188,20 @@ export default function AdminProductsPage({ setIsLogin }) {
 
         <Pagination pageInfo={pageInfo} handlePageChange={handlePageChange} />
       </div>
+
+      {isScreenLoading && (
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{
+            position: "fixed",
+            inset: 0,
+            backgroundColor: "rgba(255,255,255,0.3)",
+            zIndex: 999,
+          }}
+        >
+          <ReactLoading type="spin" color="black" width="4rem" height="4rem" />
+        </div>
+      )}
 
       <ProductModal
         modalMode={modalMode}

@@ -9,7 +9,10 @@ function Pagination({ pageInfo, handlePageChange }) {
         <ul className="pagination">
           <li className={`page-item ${!pageInfo.has_pre && "disabled"}`}>
             <a
-              onClick={() => handlePageChange(page - 1)}
+              onClick={(e) => {
+                e.preventDefault();
+                handlePageChange(page - 1);
+              }}
               className="page-link"
               href="#"
             >
@@ -23,7 +26,10 @@ function Pagination({ pageInfo, handlePageChange }) {
               key={index}
             >
               <a
-                onClick={() => handlePageChange(index + 1)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handlePageChange(index + 1);
+                }}
                 className="page-link"
                 href="#"
               >
@@ -34,7 +40,10 @@ function Pagination({ pageInfo, handlePageChange }) {
 
           <li className={`page-item ${!pageInfo.has_next && "disabled"}`}>
             <a
-              onClick={() => handlePageChange(page + 1)}
+              onClick={(e) => {
+                e.preventDefault();
+                handlePageChange(page + 1);
+              }}
               className="page-link"
               href="#"
             >

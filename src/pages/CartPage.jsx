@@ -16,10 +16,13 @@ export default function CartPage() {
   // 取得購物車列表
   const getCart = async () => {
     try {
+      setIsScreenLoading(true);
       const res = await axios.get(`${BASE_URL}/api/${API_PATH}/cart`);
       setCart(res.data.data);
     } catch (error) {
       alert("取得購物車列表失敗");
+    } finally {
+      setIsScreenLoading(false);
     }
   };
 

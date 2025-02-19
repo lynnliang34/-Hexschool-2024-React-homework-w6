@@ -187,6 +187,8 @@ VITE_BASE_URL = https://ec-course-api.hexschool.io/v2
 VITE_API_PATH = lynnliang34
 ```
 
+<br>
+
 想請問：
 
 1. 跟著助教影音做完後，嘗試做 Lv3 點登入跳到第四周作頁的編輯頁面。但複製完後發現，點擊分頁按鈕變直接跳回首頁，不知是什麼問題？
@@ -202,6 +204,8 @@ VITE_API_PATH = lynnliang34
 }
 ```
 
+<br>
+
 3. 首頁`HomePage.jsx`有插入自己的圖片，試了兩種寫法，都是本地端可以看到，但 Github Page 顯示不出來，不知要怎麼改？
 
 ```jsx
@@ -209,7 +213,9 @@ VITE_API_PATH = lynnliang34
 <img src="../src/assets/infant.png"/>
 ```
 
+<br>
 —
+<br>
 
 A1：
 
@@ -230,6 +236,8 @@ A1：
 </a>
 ```
 
+<br>
+
 A2：
 可以嘗試看看從專案路徑來做調整：
 
@@ -237,6 +245,8 @@ A2：
 - 將專案移出中文路徑之外，或調整中文路徑為英文路徑，在有些環境的操作，這些中文路徑可能會有所影響。另外在路徑也盡量避免空白，像是`2024 React 直播班` ，這有時候也會造成錯誤哩
 
 （以上這兩個方式可先嘗試調整看看～）
+
+<br>
 
 A3：
 
@@ -262,7 +272,9 @@ export default function HomePage() {
 }
 ```
 
-另外提醒，因為同學部署的位置是：https://lynnliang34.github.io/-Hexschool-2024-React-homework-w6/，所以也記得 vite.config.js 的 base 路徑要做調整唷
+<br>
+
+另外提醒，因為同學部署的位置是：https://lynnliang34.github.io/-Hexschool-2024-React-homework-w6/ ，所以也記得 vite.config.js 的 base 路徑要做調整唷
 
 ```jsx
 export default defineConfig({
